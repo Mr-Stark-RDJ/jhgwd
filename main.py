@@ -3,12 +3,6 @@ import os
 api_id = None
 api_hash = None
 
-# Check if API ID and API Hash are already saved
-if os.path.exists("api_credentials.txt"):
-    with open("api_credentials.txt", "r") as file:
-        saved_credentials = file.read().splitlines()
-        if len(saved_credentials) == 2:
-            api_id, api_hash = saved_credentials
 
 # If not saved or if the user wants to change them
 if not api_id or not api_hash or input("Do you want to change API ID and API Hash? (y/n): ").strip().lower() == "y":
@@ -19,6 +13,14 @@ if not api_id or not api_hash or input("Do you want to change API ID and API Has
     with open("api_credentials.txt", "w") as file:
         file.write(api_id + "\n")
         file.write(api_hash + "\n")
+
+# Check if API ID and API Hash are already saved
+if os.path.exists("api_credentials.txt"):
+    with open("api_credentials.txt", "r") as file:
+        saved_credentials = file.read().splitlines()
+        if len(saved_credentials) == 2:
+            api_id, api_hash = saved_credentials
+
 
 from telethon import TelegramClient, sync, events
 from time import sleep
