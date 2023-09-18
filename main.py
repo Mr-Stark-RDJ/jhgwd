@@ -28,6 +28,8 @@ import asyncio
 
 app = Client("hexa", api_id, api_hash)
 
+fitem = input("Enter what you want to find : \n")
+
 async def main():
     async with app:
         while True:
@@ -41,7 +43,7 @@ async def echo(client, message):
     if not message.text:
         message.text = message.caption
     print(message.text)
-    if "found!" in message.text:
+    if fitem in message.text:
         print("Found Shiny/TM")
         quit()
 
